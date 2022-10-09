@@ -8,12 +8,12 @@ import com.example.lab3.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private var isRunning = true
-    private var buttonsVisible = false
-    private var seconds = 0
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) } // оголошення binding для доступу до елементів макету
+    private var isRunning = true // чи відкрита активність
+    private var buttonsVisible = false // чи показано список студентів
+    private var seconds = 0 // таймер
     private var textSize = 0.0f
-    private var students = ""
+    private var students = "" // список студентів
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -23,26 +23,26 @@ class MainActivity : AppCompatActivity() {
         val spinner = binding.spinner
         val sendBtn = binding.send
         val changeTextSizeBtn = binding.changeTextSize
-        textSize = studentList.textSize
+        textSize = studentList.textSize // отримання розміру тексту
         var group = 0
-        showListBtn.setOnClickListener{
+        showListBtn.setOnClickListener{ // показати список студентів з вказаної групи
             setVisibility()
             group = spinner.selectedItem.toString().toInt()
             students = Student.getStudents(group)
             studentList.text = students
         }
-        sendBtn.setOnClickListener {
+        sendBtn.setOnClickListener { // відправлення списку через зовнішній застосунок
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, studentList.text)
             intent.putExtra(Intent.EXTRA_SUBJECT, "Список студентів групи $group")
             startActivity(intent)
         }
-        changeTextSizeBtn.setOnClickListener{
+        changeTextSizeBtn.setOnClickListener{ // змінення розміру тектсу
             textSize *= 1.1f
             studentList.textSize = textSize
         }
-        if (savedInstanceState != null){
+        if (savedInstanceState != null){ // відновлення зміних активності (якщо збережені)
             if (buttonsVisible) setVisibility()
             val stList = savedInstanceState.getString("studentList")
             val txtSize = savedInstanceState.getFloat("textSize")
@@ -53,11 +53,11 @@ class MainActivity : AppCompatActivity() {
             seconds = savedInstanceState.getInt("timer")
         }
     }
-    private fun runTimer(){
+    private fun runTimer(){ // запуск таймеру
         val timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
-                if (isRunning){
+                if (isRunning){ // таймер працює якщо активність відкрита
                     seconds++
                     val hours = seconds / 3600
                     val minutes = (seconds % 3600) / 60
@@ -69,24 +69,24 @@ class MainActivity : AppCompatActivity() {
             }
         }, 1000, 1000)
     }
-    override fun onSaveInstanceState(outState: Bundle) {
+    override fun onSaveInstanceState(outState: Bundle) { // збереження зміних активності при повороті екрану
         super.onSaveInstanceState(outState)
         outState.putFloat("textSize", textSize)
         outState.putString("studentList", students)
         outState.putInt("timer", seconds)
     }
 
-    override fun onStart() {
+    override fun onStart() { // відновлення таймеру при відновленні активності
         super.onStart()
         isRunning = true
     }
 
-    override fun onStop() {
+    override fun onStop() { // зупинення таймеру при виході з активності
         super.onStop()
         isRunning = false
     }
-    private fun setVisibility(){
-        buttonsVisible = true // змінюємо це поле на true при першому натисканні на кнопку та відповняємо тільки якщо текст вже показано
+    private fun setVisibility(){ // приховуємо привітання, відображаємо список студентів, кнопки збільшення шрифту та відправлення списку
+        buttonsVisible = true // змінюємо це поле на true при першому показі списку та відновляємо видимість в onCreate тільки якщо список видимий
         binding.greeting.visibility = View.GONE
         binding.studentList.visibility = View.VISIBLE
         binding.send.visibility = View.VISIBLE
