@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Довідник студентів</string>
+    <string name="hello_text">Привіт студенти!</string>
+    <string name="show_list">Показати список</string>
+    <string name="send">Відправити список</string>
+    <string name="increase_size">+</string>
+    <string name="decrease_size">-</string>
+    <string-array name="array">
+        <item>K25–1</item>
+        <item>K25–2</item>
+        <item>K25–3</item>
+        <item>K25–4</item>
+        <item>K25m</item>
+    </string-array>
+    <string name="group_number">Номер групи:</string>
+    <string name="faculty">Назва групи:</string>
+    <string name="ok">ОК</string>
+    <string name="details">Детальніше…</string>
+    <string name="edu_level">Освітній\nрівень:</string>
+    <string name="bac">Бакалавр</string>
+    <string name="mag">Магістр</string>
+    <string name="additional">Додаткові\nвідомості:</string>
+    <string name="has_contracts">Є контрактники</string>
+    <string name="has_privilege">Є пільговики</string>
+</resources>
