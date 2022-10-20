@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         val spinner = binding.spinner
         val sendBtn = binding.send
         val changeTextSizeBtn = binding.changeTextSize
-        textSize = studentList.textSize // отримання розміру тексту
+        textSize = studentList.textSize / 2.765f
         var group = 0
+        println(textSize)
         showListBtn.setOnClickListener{ // показати список студентів з вказаної групи
             setVisibility()
             group = spinner.selectedItem.toString().toInt()
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             studentList.textSize = textSize
         }
         if (savedInstanceState != null){ // відновлення зміних активності (якщо збережені)
+            buttonsVisible = savedInstanceState.getBoolean("buttonsVisible")
             if (buttonsVisible) setVisibility()
             val stList = savedInstanceState.getString("studentList")
             val txtSize = savedInstanceState.getFloat("textSize")
@@ -74,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         outState.putFloat("textSize", textSize)
         outState.putString("studentList", students)
         outState.putInt("timer", seconds)
+        outState.putBoolean("buttonsVisible", buttonsVisible)
     }
 
     override fun onStart() { // відновлення таймеру при відновленні активності
