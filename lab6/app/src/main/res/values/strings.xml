@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Довідник студентів</string>
+    <string name="hello_text">Привіт студенти!</string>
+    <string name="show_list">Показати список</string>
+    <string name="send">Відправити список</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="group_number">Номер групи:</string>
+    <string name="faculty">Назва групи:</string>
+    <string name="ok">ОК</string>
+    <string name="details">Детальніше…</string>
+    <string name="edu_level">Освітній\nрівень:</string>
+    <string name="bac">Бакалавр</string>
+    <string name="mag">Магістр</string>
+    <string name="additional">Додаткові\nвідомості:</string>
+    <string name="has_contracts">Є контрактники</string>
+    <string name="has_privilege">Є пільговики</string>
+    <string name="student_groups">Студентські групи</string>
+    <string name="student_list">Список студентів</string>
+</resources>
